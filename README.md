@@ -21,7 +21,6 @@ Pipeline orchestration is handled by **Apache Airflow**.
 
 # Pipeline Architecture
 
-![Pipeline Architecture](pipeline_architecture.png)
 
 ---
 
@@ -86,7 +85,7 @@ Two major changes were implemented.
 
 ---
 
-# 1️. Schema Evolution
+### 1️. Schema Evolution
 
 The source data was extended with a **new column describing order status**.
 
@@ -95,19 +94,20 @@ Migration:
 ```sql
 ALTER TABLE staging.user_order_log
 ADD COLUMN status VARCHAR(50);
+```
 
 Possible values:
 
-shipped
-refunded
+**shipped**
+**refunded**
 
 To maintain backward compatibility, if incoming data does not contain a status column, the pipeline assigns:
 
-status = 'shipped'
+status = **'shipped'**
 
 ---
 
-# 2. Updated Sales Fact Table
+### 2. Updated Sales Fact Table
 
 The existing fact table mart.f_daily_sales was updated to support refunds.
 
@@ -121,7 +121,7 @@ This ensures that total revenue metrics remain correct when aggregated.
 
 ---
 
-# 3. New Analytical Mart
+### 3. New Analytical Mart
 
 To support product and marketing analysis, a new data mart was introduced:
 

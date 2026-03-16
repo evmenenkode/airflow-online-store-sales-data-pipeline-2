@@ -24,7 +24,7 @@ Pipeline orchestration is handled by **Apache Airflow**.
 
 ---
 
-# Pipeline Version 1 (Initial Implementation)
+## Pipeline Version 1 (Initial Implementation)
 
 The first version of the pipeline performs the following steps:
 
@@ -77,7 +77,7 @@ These tables support analytical queries and reporting.
 
 ---
 
-# Pipeline Version 2 (Pipeline Update)
+## Pipeline Version 2 (Pipeline Update)
 
 Later, the source system introduced **order refunds**, which required updating the pipeline.
 
@@ -168,6 +168,23 @@ This ensures that the warehouse is updated with incremental data.
 - **Pandas** — data processing  
 - **REST API** — data source  
 - **Object Storage (S3)** — file storage  
+
+## Running the Project with Docker
+
+The project is designed to run inside a Docker environment.
+
+Docker is used to run the following services:
+
+- Apache Airflow
+- PostgreSQL database
+
+This allows the pipeline to run in an isolated and reproducible environment.
+
+### Start the Environment
+
+```bash
+docker-compose up -d
+```
 
 
 ---

@@ -12,7 +12,7 @@ The project also demonstrates **schema evolution**, **incremental loading**, and
 
 The pipeline follows a **layered data warehouse architecture**:
 
-![alt text](pipeline_architecture.png)
+![alt text](architecture/pipeline_architecture.png)
 
 
 Pipeline orchestration is handled by **Apache Airflow**.

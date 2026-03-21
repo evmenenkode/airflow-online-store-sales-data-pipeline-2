@@ -186,7 +186,6 @@ This allows the pipeline to run in an isolated and reproducible environment.
 docker-compose up -d
 ```
 
-
 ---
 
 ## Key Features
@@ -212,6 +211,41 @@ Possible next steps for the pipeline:
 - introduce **dbt for transformations**
 - deploy the pipeline to a **cloud environment**
 
+
+---
+
+## Data Quality Layer (DQ Checks)
+
+The pipeline was extended with a dedicated Data Quality (DQ) layer to ensure data reliability before loading into the data warehouse.
+
+![alt text](architecture/pipeline_with_dq.png)
+
+### Implemented DQ Rules
+
+- **File availability check**
+  - Ensures that increment data exists before processing
+
+- **NULL checks**
+  - Validates that `customer_id` is not NULL in:
+    - `staging.user_order_log`
+    - `staging.user_activity_log`
+
+- **Test data filtering**
+  - Detects and blocks test or corrupted records:
+    - `status LIKE '%test%'`
+    - `item_name LIKE '%test%'`
+
+- **Data validation logging**
+  - All DQ results are stored in a dedicated table:
+  
+```sql
+dq_checks_results (
+    table_name,
+    check_name,
+    check_date,
+    check_result
+)
+```
 
 ---
 
